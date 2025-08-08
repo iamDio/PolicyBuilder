@@ -1,4 +1,4 @@
-# QuoteFlow - Insurance Quote API
+# PolicyBuilder - Insurance Quote API
 
 Professional life insurance quote calculation platform built with NestJS, GraphQL, and Redis caching.
 
