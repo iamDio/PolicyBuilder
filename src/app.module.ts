@@ -9,12 +9,10 @@ import { join } from 'path';
 
 @Module({
   imports: [
-    // Load environment variables
     ConfigModule.forRoot({
       isGlobal: true,
     }),
 
-    // GraphQL setup
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),

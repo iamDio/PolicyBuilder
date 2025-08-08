@@ -1,4 +1,3 @@
-// src/redis/redis.service.ts
 /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
 
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
@@ -13,8 +12,6 @@ export class RedisService implements OnModuleInit, OnModuleDestroy {
     const port = parseInt(process.env.REDIS_PORT || '6380', 10);
 
     this.client = new Redis(port, host);
-
-    // Test connection
     try {
       await this.client.ping();
       console.log('✅ Redis connected successfully');

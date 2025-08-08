@@ -48,11 +48,10 @@ export class QuoteService {
       createdAt: new Date().toISOString(),
     };
 
-    // Cache quote in Redis for 30 days
     await this.redisService.set(
       `quote:${quoteId}`,
       JSON.stringify(quote),
-      30 * 24 * 60 * 60, // 30 days in seconds
+      30 * 24 * 60 * 60,
     );
 
     return quote;
@@ -68,14 +67,12 @@ export class QuoteService {
       const parsed: QuoteResponseDto = JSON.parse(cached) as QuoteResponseDto;
       return parsed;
     } catch (error) {
-      // Log the error if needed
       console.error('Failed to parse cached quote:', error);
       return null;
     }
   }
 
   private getBaseRate(age: number, gender: Gender): number {
-    // Simplified rate table with proper typing
     const rates: RateTable = {
       male: {
         '18-30': 0.8,
@@ -93,12 +90,10 @@ export class QuoteService {
 
     const ageGroup = this.getAgeGroup(age);
 
-    // Type-safe property access
     if (gender in rates) {
       return rates[gender][ageGroup];
     }
 
-    // Fallback to default rate if gender is not found
     return rates.male[ageGroup];
   }
 
@@ -115,7 +110,6 @@ export class QuoteService {
   ): number {
     let multiplier = 1.0;
 
-    // Smoking status impact
     switch (smokingStatus) {
       case 'smoker':
         multiplier *= 2.0;
@@ -125,11 +119,9 @@ export class QuoteService {
         break;
       case 'non-smoker':
       default:
-        // No additional multiplier for non-smokers
         break;
     }
 
-    // Health conditions impact
     const riskConditions = [
       'diabetes',
       'heart-disease',
