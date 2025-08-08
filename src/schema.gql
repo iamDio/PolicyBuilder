@@ -1,0 +1,31 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type QuoteResponseDto {
+  quoteId: ID!
+  monthlyPremium: Float!
+  annualPremium: Float!
+  coverageAmount: Float!
+  riskClass: String!
+  expiresAt: String!
+  createdAt: String!
+}
+
+type Query {
+  """Get quote by ID"""
+  getQuote(quoteId: String!): QuoteResponseDto!
+}
+
+type Mutation {
+  """Calculate insurance quote"""
+  calculateQuote(input: QuoteInputDto!): QuoteResponseDto!
+}
+
+input QuoteInputDto {
+  age: Int!
+  gender: String!
+  coverageAmount: Float!
+  healthConditions: [String!]!
+  smokingStatus: String!
+}
